@@ -1,0 +1,12 @@
+const r = require("express").Router();
+const c = require("../controllers/main.controller");
+const { protect } = require("../middleware/auth.middleware");
+r.use(protect);
+r.get("/",            c.getInterviewSessions);
+r.get("/stats",       c.getInterviewStats);
+r.post("/start",      c.startInterview);
+r.get("/:id",         c.getInterviewById);
+r.get("/:id/questions", c.getInterviewQuestions);
+r.post("/:id/answer", c.submitAnswer);
+r.patch("/:id/complete", c.completeInterview);
+module.exports = r;

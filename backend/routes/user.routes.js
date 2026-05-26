@@ -1,0 +1,18 @@
+const r = require("express").Router();
+const c = require("../controllers/user.controller");
+const { protect } = require("../middleware/auth.middleware");
+r.use(protect);
+r.get("/profile",       c.getProfile);
+r.patch("/profile",     c.updateProfile);
+r.patch("/change-password", c.changePassword);
+r.get("/skills",        c.getUserSkills);
+r.post("/skills",       c.addUserSkill);
+r.patch("/skills/:skillId",  c.updateUserSkill);
+r.delete("/skills/:skillId", c.removeUserSkill);
+r.get("/experiences",   c.getExperiences);
+r.post("/experiences",  c.addExperience);
+r.delete("/experiences/:id", c.deleteExperience);
+r.get("/educations",    c.getEducations);
+r.post("/educations",   c.addEducation);
+r.delete("/educations/:id",  c.deleteEducation);
+module.exports = r;

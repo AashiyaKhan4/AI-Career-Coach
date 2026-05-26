@@ -1,0 +1,11 @@
+const r = require("express").Router();
+const c = require("../controllers/main.controller");
+const { protect } = require("../middleware/auth.middleware");
+r.use(protect);
+r.get("/",              c.getRoadmaps);
+r.post("/",             c.createRoadmap);
+r.get("/:id",           c.getRoadmapById);
+r.delete("/:id",        c.deleteRoadmap);
+r.get("/:id/progress",  c.getRoadmapProgress);
+r.post("/resources/:resourceId/progress", c.updateResourceProgress);
+module.exports = r;
